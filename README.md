@@ -3,9 +3,9 @@
 A simple product application built with **Next.js 15** (App Router) and **NextAuth.js** for authentication.  
 Public users can explore products, while logged-in users can add new products.
 ---
-Live site: [Vercel Live Link](https://next-js-product-app-five.vercel.app/)
+Live site: [Live Link](https://next-js-product-app-five.vercel.app/)
 
-GitHub Repo: [GitHub Repository](https://github.com/azijulhakimbd/NextJS-Product-App)
+GitHub Repo: [GitHub](https://github.com/azijulhakimbd/NextJS-Product-App)
 ---
 
 ## 🚀 Features
