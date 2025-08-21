@@ -7,15 +7,15 @@ export default function Footer() {
         <div className="flex flex-col md:flex-row justify-between items-center">
           {/* Logo / Brand */}
           <div className="mb-4 md:mb-0 text-center md:text-left">
-            <h1 className="text-xl font-bold text-white">MyApp</h1>
+            <h1 className="text-xl font-bold ">MAH TECH</h1>
             <p className="text-gray-400 text-sm">© {new Date().getFullYear()} MyApp. All rights reserved.</p>
           </div>
 
           {/* Links */}
           <div className="flex space-x-6 mb-4 md:mb-0 text-center">
             <a href="/" className="hover:text-white transition">Home</a>
-            <a href="/about" className="hover:text-white transition">About</a>
-            <a href="/contact" className="hover:text-white transition">Contact</a>
+            <a href="/products" className="hover:text-white transition">Products</a>
+            <a href="/dashboard" className="hover:text-white transition">Dashboard</a>
             <a href="/privacy" className="hover:text-white transition">Privacy</a>
           </div>
 

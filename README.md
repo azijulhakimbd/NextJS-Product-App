@@ -22,7 +22,8 @@ GitHub Repo: [GitHub](https://github.com/azijulhakimbd/NextJS-Product-App)
 - Next.js 15 (App Router)
 - NextAuth.js
 - Tailwind CSS
-- React Hot Toast
+- Sweetalert2
+- mongoDB
 
 ---
 ## 🌍 Routes

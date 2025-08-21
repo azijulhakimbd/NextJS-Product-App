@@ -26,7 +26,7 @@ export default function DashboardLayout({ children }) {
           href="/"
           className="text-2xl font-bold text-blue-600 dark:text-blue-400"
         >
-          🛍️ MyShop
+          🛍️ MAH TECH
         </Link>
           <button className="md:hidden" onClick={() => setOpen(!open)}>☰</button>
         </div>

@@ -17,7 +17,7 @@ export default function Navbar() {
           href="/"
           className="text-2xl font-bold text-blue-600 dark:text-blue-400"
         >
-          🛍️ MyShop
+          🛍️ MAH TECH
         </Link>
 
         {/* Desktop Menu */}
@@ -33,8 +33,13 @@ export default function Navbar() {
             </Link>
           </li>
           <li>
-            <Link href="/dashboard/" className="hover:text-blue-500 dark:hover:text-blue-400">
+            <Link href="/dashboard" className="hover:text-blue-500 dark:hover:text-blue-400">
               Dashboard
+            </Link>
+          </li>
+          <li>
+            <Link href="/privacy" className="hover:text-blue-500 dark:hover:text-blue-400">
+              Privacy
             </Link>
           </li>
 
