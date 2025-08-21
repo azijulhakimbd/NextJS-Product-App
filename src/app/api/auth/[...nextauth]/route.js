@@ -4,13 +4,10 @@ import CredentialsProvider from "next-auth/providers/credentials";
 
 export const authOptions = {
   providers: [
-    // ✅ Google Login
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
     }),
-
-    // ✅ Credentials Login
     CredentialsProvider({
       name: "Credentials",
       credentials: {
@@ -18,25 +15,28 @@ export const authOptions = {
         password: { label: "Password", type: "password" },
       },
       async authorize(credentials) {
-        // Example: match with DB user
         if (
           credentials.email === "test@example.com" &&
           credentials.password === "123456"
         ) {
           return { id: 1, name: "Test User", email: "test@example.com" };
         }
-        return null; 
+        return null;
       },
     }),
   ],
 
+  secret: process.env.NEXTAUTH_SECRET,
+  session: { strategy: "jwt" },
+
   pages: {
-    signIn: "/login", 
+    signIn: "/login",
   },
 
   callbacks: {
     async redirect({ url, baseUrl }) {
-      return "/products"; 
+      if (url.startsWith(baseUrl)) return url;
+      return "/products";
     },
   },
 };
