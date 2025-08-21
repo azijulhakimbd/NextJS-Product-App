@@ -7,7 +7,7 @@ export default function DashboardHome() {
   ];
 
   return (
-    <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+    <div className="grid gap-6 sm:grid-cols-2 py-20 lg:grid-cols-4">
       {stats.map((stat) => (
         <div key={stat.title} className="bg-white dark:bg-gray-800 shadow-md rounded-xl p-6 flex flex-col items-center">
           <h2 className="text-2xl font-bold text-blue-600 dark:text-blue-400">{stat.value}</h2>

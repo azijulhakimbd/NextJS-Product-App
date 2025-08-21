@@ -22,7 +22,12 @@ export default function DashboardLayout({ children }) {
       {/* Sidebar */}
       <div className={`bg-white dark:bg-gray-800 w-64 transition-all ${open ? "translate-x-0" : "-translate-x-64"} md:translate-x-0 shadow-lg`}>
         <div className="flex items-center justify-between px-6 py-4 border-b dark:border-gray-700">
-          <h1 className="text-xl font-bold text-blue-600 dark:text-blue-400">MyShop</h1>
+         <Link
+          href="/"
+          className="text-2xl font-bold text-blue-600 dark:text-blue-400"
+        >
+          🛍️ MyShop
+        </Link>
           <button className="md:hidden" onClick={() => setOpen(!open)}>☰</button>
         </div>
         <ul className="mt-6">
@@ -44,7 +49,7 @@ export default function DashboardLayout({ children }) {
           <li>
             <button
               onClick={() => signOut({ callbackUrl: "/" })}
-              className="w-full text-left flex items-center gap-3 px-6 py-3 hover:bg-gray-200 dark:hover:bg-gray-700"
+              className="w-full text-left text-red-600 btn flex items-center gap-3 px-6 py-3 hover:bg-gray-200 dark:hover:bg-gray-700"
             >
               Logout
             </button>

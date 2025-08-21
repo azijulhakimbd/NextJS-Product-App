@@ -4,6 +4,7 @@ import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import axios from "axios";
+import Swal from "sweetalert2";
 
 export default function AddProductPage() {
   const { data: session, status } = useSession();
@@ -28,12 +29,33 @@ export default function AddProductPage() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("/api/products", product); // your API route
-      alert("Product added successfully!");
+     
+      Swal.fire({
+        title: "Adding product...",
+        allowOutsideClick: false,
+        didOpen: () => Swal.showLoading(),
+      });
+
+      await axios.post("/api/products", product); 
+
+      Swal.close(); 
+
+      Swal.fire({
+        icon: "success",
+        title: "Product added!",
+        text: "The product was successfully added.",
+        timer: 2000,
+        showConfirmButton: false,
+      });
+
       setProduct({ name: "", description: "", price: "", details: "", image: "" });
     } catch (err) {
       console.error(err);
-      alert("Failed to add product");
+      Swal.fire({
+        icon: "error",
+        title: "Failed",
+        text: "Could not add the product. Please try again.",
+      });
     }
   };
 
