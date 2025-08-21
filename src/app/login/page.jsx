@@ -2,40 +2,14 @@
 
 import { signIn } from "next-auth/react";
 import { FcGoogle } from "react-icons/fc";
-import Swal from "sweetalert2";
 
 export default function LoginPage() {
   const handleGoogleLogin = async () => {
-    
-    Swal.fire({
-      title: "Logging in...",
-      allowOutsideClick: false,
-      didOpen: () => {
-        Swal.showLoading();
-      },
-    });
-
-    const result = await signIn("google", { redirect: false });
-
-    Swal.close(); 
+    const result = await signIn("google", { redirect: true });
 
     if (result?.ok) {
-      Swal.fire({
-        icon: "success",
-        title: "Login successful!",
-        text: "Redirecting to dashboard...",
-        timer: 1500,
-        showConfirmButton: false,
-      }).then(() => {
-        window.location.href = "/"; 
-      });
-    } else {
-      Swal.fire({
-        icon: "error",
-        title: "Login failed",
-        text: "Please try again.",
-      });
-    }
+      window.location.href = "/products"; 
+    } 
   };
 
   return (
