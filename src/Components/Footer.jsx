@@ -21,16 +21,16 @@ export default function Footer() {
 
           {/* Social Icons */}
           <div className="flex space-x-4">
-            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="hover:text-white transition">
+            <a href="https://facebook.com/azijulhakimbd" target="_blank" rel="noopener noreferrer" className="hover:text-white transition">
               <FaFacebookF size={20} />
             </a>
-            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="hover:text-white transition">
+            <a href="https://twitter.com/azijulhakimbd" target="_blank" rel="noopener noreferrer" className="hover:text-white transition">
               <FaTwitter size={20} />
             </a>
-            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="hover:text-white transition">
+            <a href="https://linkedin.com/in/azijulhakimbd" target="_blank" rel="noopener noreferrer" className="hover:text-white transition">
               <FaLinkedinIn size={20} />
             </a>
-            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="hover:text-white transition">
+            <a href="https://instagram.com/azijulhakimbd" target="_blank" rel="noopener noreferrer" className="hover:text-white transition">
               <FaInstagram size={20} />
             </a>
           </div>

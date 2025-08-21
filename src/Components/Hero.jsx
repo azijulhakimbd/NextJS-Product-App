@@ -49,7 +49,7 @@ export default function HeroSection() {
               <FaShoppingCart /> Shop Now
             </Link>
             <Link
-              href="/register"
+              href="/login"
               className="px-6 py-3 rounded-lg border border-gray-400 text-gray-800 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 transition"
             >
               Get Started

@@ -42,7 +42,7 @@ export default async function ProductDetails({ params }) {
 
         {/* Product Details */}
         <div>
-          <h1 className="text-3xl text-gray-900 font-bold mb-4">{product.name}</h1>
+          <h1 className="text-3xl text-white font-bold mb-4">{product.name}</h1>
           <p className="text-gray-600 mb-6 leading-relaxed">{product.details}</p>
           <p className="text-2xl font-semibold text-blue-600 mb-6">
             ${product.price}

@@ -3,10 +3,10 @@ import Link from "next/link";
 import { useState } from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
 import ThemeToggle from "./ThemeToggle";
-
+import { useSession, signOut } from "next-auth/react";
 
 export default function Navbar() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const { data: session } = useSession(); 
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
@@ -33,29 +33,22 @@ export default function Navbar() {
             </Link>
           </li>
           <li>
-            <Link href="/dashboard/add-product" className="hover:text-blue-500 dark:hover:text-blue-400">
+            <Link href="/dashboard/" className="hover:text-blue-500 dark:hover:text-blue-400">
               Dashboard
             </Link>
           </li>
 
           {/* Auth Buttons */}
-          {!isLoggedIn ? (
-            <>
-              <li>
-                <Link href="/login" className="px-4 py-1 rounded-lg bg-blue-600 text-white hover:bg-blue-700">
-                  Login
-                </Link>
-              </li>
-              <li>
-                <Link href="/register" className="px-4 py-1 rounded-lg bg-green-600 text-white hover:bg-green-700">
-                  Register
-                </Link>
-              </li>
-            </>
+          {!session ? (
+            <li>
+              <Link href="/login" className="px-4 py-1 rounded-lg bg-blue-600 text-white hover:bg-blue-700">
+                Login
+              </Link>
+            </li>
           ) : (
             <li>
               <button
-                onClick={() => setIsLoggedIn(false)}
+                onClick={() => signOut({ callbackUrl: "/" })}
                 className="px-4 py-1 rounded-lg bg-red-600 text-white hover:bg-red-700"
               >
                 Logout
@@ -86,10 +79,10 @@ export default function Navbar() {
             <Link href="/products" onClick={() => setMenuOpen(false)}>Products</Link>
           </li>
           <li>
-            <Link href="/dashboard/add-product" onClick={() => setMenuOpen(false)}>Dashboard</Link>
+            <Link href="/dashboard/" onClick={() => setMenuOpen(false)}>Dashboard</Link>
           </li>
 
-          {!isLoggedIn ? (
+          {!session ? (
             <>
               <li>
                 <Link href="/login" onClick={() => setMenuOpen(false)}
@@ -97,17 +90,11 @@ export default function Navbar() {
                   Login
                 </Link>
               </li>
-              <li>
-                <Link href="/register" onClick={() => setMenuOpen(false)}
-                  className="px-4 py-1 rounded-lg bg-green-600 text-white">
-                  Register
-                </Link>
-              </li>
             </>
           ) : (
             <li>
               <button
-                onClick={() => { setIsLoggedIn(false); setMenuOpen(false); }}
+                onClick={() => { signOut({ callbackUrl: "/" }); setMenuOpen(false); }}
                 className="px-4 py-1 rounded-lg bg-red-600 text-white">
                 Logout
               </button>
