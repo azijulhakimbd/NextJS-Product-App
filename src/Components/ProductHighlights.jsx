@@ -2,19 +2,16 @@ import clientPromise from "@/lib/mongodb";
 import Image from "next/image";
 
 export default async function ProductHighlights() {
-  
   const client = await clientPromise;
-  const db = client.db("ProductApp"); 
-  const products = await db
-    .collection("products")
-    .find({})
-    .limit(4)
-    .toArray();
+  const db = client.db("ProductApp");
+  const products = await db.collection("products").find({}).limit(4).toArray();
 
   return (
     <section className="bg-gray-900 py-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h2 className="text-3xl font-bold text-white mb-4">Product Highlights</h2>
+        <h2 className="text-3xl font-bold text-white mb-4">
+          Product Highlights
+        </h2>
         <p className="text-base-600 mb-12">
           Discover some of our most popular products.
         </p>
@@ -30,10 +27,15 @@ export default async function ProductHighlights() {
                   src={product.image}
                   alt={product.name}
                   fill
+                  sizes="(max-width: 768px) 100vw, 
+               (max-width: 1200px) 50vw, 
+               33vw"
                   className="object-cover rounded-xl"
                 />
               </div>
-              <h3 className="text-xl font-semibold text-gray-800 mb-2">{product.name}</h3>
+              <h3 className="text-xl font-semibold text-gray-800 mb-2">
+                {product.name}
+              </h3>
               <p className="text-gray-600 text-sm">{product.description}</p>
               <p className="text-blue-600 font-bold mt-2">${product.price}</p>
             </div>

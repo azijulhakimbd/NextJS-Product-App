@@ -6,8 +6,11 @@ const options = {};
 let client;
 let clientPromise;
 
-if (!process.env.MONGODB_URI) throw new Error("Missing Mongo URI");
+if (!uri) {
+  console.warn("⚠️ Warning: MONGODB_URI is not defined. Please check your .env.local or deployment settings.");
+}
 
+// Use a global variable in development to prevent multiple connections
 if (process.env.NODE_ENV === "development") {
   if (!global._mongoClientPromise) {
     client = new MongoClient(uri, options);
