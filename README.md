@@ -24,6 +24,7 @@ GitHub Repo: [GitHub](https://github.com/azijulhakimbd/NextJS-Product-App)
 - Tailwind CSS
 - Sweetalert2
 - mongoDB
+- react icons
 
 ---
 ## 🌍 Routes
