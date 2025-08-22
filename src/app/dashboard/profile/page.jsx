@@ -7,9 +7,10 @@ export default function Profile() {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-base-200 dark:bg-base-300 p-4">
-      <div className="w-full max-w-md bg-base-100 dark:bg-base-300 rounded-3xl shadow-xl p-8 flex flex-col items-center transition-colors duration-300">
+      <div className="w-full max-w-md md:max-w-2xl lg:max-w-3xl bg-base-100 dark:bg-base-300 rounded-3xl shadow-xl p-6 sm:p-8 flex flex-col items-center transition-colors duration-300">
+        
         {/* Avatar */}
-        <div className="relative w-32 h-32 mb-6">
+        <div className="relative w-24 h-24 sm:w-32 sm:h-32 mb-6">
           <div className="absolute inset-0 rounded-full bg-gradient-to-r from-primary to-secondary p-1">
             <img
               src={session?.user?.image || "/default-avatar.png"}
@@ -20,22 +21,26 @@ export default function Profile() {
         </div>
 
         {/* User Info */}
-        <h2 className="text-3xl font-bold text-base-content mb-2 text-center">
+        <h2 className="text-2xl sm:text-3xl font-bold text-base-content mb-2 text-center">
           {session?.user?.name || "Guest User"}
         </h2>
-        <p className="text-base-content/70 mb-4 text-center">{session?.user?.email}</p>
+        <p className="text-sm sm:text-base text-base-content/70 mb-4 text-center">
+          {session?.user?.email}
+        </p>
 
         {/* Details Card */}
-        <div className="w-full bg-base-200 dark:bg-base-100 rounded-xl p-4 flex flex-col gap-3">
-          <div className="flex justify-between">
+        <div className="w-full bg-base-200 dark:bg-base-100 rounded-xl p-4 flex flex-col gap-3 sm:gap-4">
+          <div className="flex flex-col sm:flex-row justify-between sm:items-center">
             <span className="font-medium text-base-content/80">Name:</span>
             <span className="text-base-content">{session?.user?.name}</span>
           </div>
-          <div className="flex justify-between">
+          <div className="flex flex-col sm:flex-row justify-between sm:items-center">
             <span className="font-medium text-base-content/80">Email:</span>
-            <span className="text-base-content">{session?.user?.email}</span>
+            <span className="text-base-content break-all">
+              {session?.user?.email}
+            </span>
           </div>
-          <div className="flex justify-between">
+          <div className="flex flex-col sm:flex-row justify-between sm:items-center">
             <span className="font-medium text-base-content/80">Role:</span>
             <span className="text-base-content">User</span>
           </div>

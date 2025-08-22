@@ -67,7 +67,7 @@ export default function Navbar() {
         {/* Mobile Menu Button */}
         <button
           onClick={() => setMenuOpen(!menuOpen)}
-          className="md:hidden text-gray-700 dark:text-gray-200 text-2xl"
+          className="md:hidden text-gray-700 text-2xl"
         >
           {menuOpen ? <FaTimes /> : <FaBars />}
         </button>
