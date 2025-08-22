@@ -28,7 +28,7 @@ export default function ProductsList({ products }) {
       >
         {products.map((product) => (
           <motion.div
-            key={product._id.toString()}
+            key={product._id} // Already string
             variants={{
               hidden: { opacity: 0, y: 40 },
               show: { opacity: 1, y: 0 },
@@ -38,23 +38,25 @@ export default function ProductsList({ products }) {
             className="card bg-base-100 shadow-md hover:shadow-xl transition rounded-2xl"
           >
             {/* Product Image */}
-            <figure className="relative w-full h-70">
+            <figure className="relative w-full h-64">
               <img
                 src={product.image}
                 alt={product.name}
-                className="w-full h-70 object-cover rounded-t-2xl"
+                className="w-full h-full object-cover rounded-t-2xl"
               />
             </figure>
 
             {/* Product Info */}
             <div className="card-body">
               <h2 className="card-title text-base-content">{product.name}</h2>
-              <p className="text-base-content/70">{product.description}</p>
+              <p className="text-base-content/70 line-clamp-2">
+                {product.description}
+              </p>
               <p className="text-lg font-bold text-primary">${product.price}</p>
 
               <div className="card-actions justify-end mt-4">
                 <Link
-                  href={`/products/${product._id.toString()}`}
+                  href={`/products/${product._id}`}
                   className="btn btn-primary rounded-2xl btn-sm"
                 >
                   View Details

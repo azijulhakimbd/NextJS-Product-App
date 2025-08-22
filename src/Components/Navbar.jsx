@@ -13,44 +13,29 @@ export default function Navbar() {
     <nav className="bg-base-100 dark:bg-base-300 shadow-md transition-colors duration-300">
       <div className="container mx-auto flex items-center justify-between px-6 py-4">
         {/* Logo */}
-        <Link
-          href="/"
-          className="text-2xl font-bold text-primary"
-        >
+        <Link href="/" className="text-2xl font-bold text-primary">
           🛍️ MAH TECH
         </Link>
 
         {/* Desktop Menu */}
         <ul className="hidden md:flex items-center gap-4 font-medium">
           <li>
-            <Link
-              href="/"
-              className="hover:text-primary-focus dark:hover:text-primary-content"
-            >
+            <Link href="/" className="haver:text-primary">
               Home
             </Link>
           </li>
           <li>
-            <Link
-              href="/products"
-              className="hover:text-primary-focus dark:hover:text-primary-content"
-            >
+            <Link href="/products" className="hover:text-primary">
               Products
             </Link>
           </li>
           <li>
-            <Link
-              href="/dashboard"
-              className="hover:text-primary-focus dark:hover:text-primary-content"
-            >
+            <Link href="/dashboard" className="hover:text-primary">
               Dashboard
             </Link>
           </li>
           <li>
-            <Link
-              href="/privacy"
-              className="hover:text-primary-focus dark:hover:text-primary-content"
-            >
+            <Link href="/privacy" className="hover:text-primary">
               Privacy
             </Link>
           </li>
@@ -58,10 +43,7 @@ export default function Navbar() {
           {/* Auth Buttons */}
           {!session ? (
             <li>
-              <Link
-                href="/login"
-                className="btn btn-primary btn-sm"
-              >
+              <Link href="/login" className="btn btn-primary btn-sm">
                 Login
               </Link>
             </li>
@@ -77,7 +59,9 @@ export default function Navbar() {
           )}
 
           {/* Theme Toggle */}
-          <li><ThemeToggle /></li>
+          <li>
+            <ThemeToggle />
+          </li>
         </ul>
 
         {/* Mobile Menu Button */}
@@ -93,17 +77,29 @@ export default function Navbar() {
       {menuOpen && (
         <ul className="md:hidden flex flex-col gap-3 px-6 py-4 bg-base-200 dark:bg-base-300 font-medium">
           <li>
-            <Link href="/" onClick={() => setMenuOpen(false)} className="hover:text-primary-focus dark:hover:text-primary-content">
+            <Link
+              href="/"
+              onClick={() => setMenuOpen(false)}
+              className="hover:text-primary-focus"
+            >
               Home
             </Link>
           </li>
           <li>
-            <Link href="/products" onClick={() => setMenuOpen(false)} className="hover:text-primary-focus dark:hover:text-primary-content">
+            <Link
+              href="/products"
+              onClick={() => setMenuOpen(false)}
+              className="hover:text-primary-focus "
+            >
               Products
             </Link>
           </li>
           <li>
-            <Link href="/dashboard" onClick={() => setMenuOpen(false)} className="hover:text-primary-focus dark:hover:text-primary-content">
+            <Link
+              href="/dashboard"
+              onClick={() => setMenuOpen(false)}
+              className="hover:text-primary-focus "
+            >
               Dashboard
             </Link>
           </li>
@@ -121,7 +117,10 @@ export default function Navbar() {
           ) : (
             <li>
               <button
-                onClick={() => { signOut({ callbackUrl: "/" }); setMenuOpen(false); }}
+                onClick={() => {
+                  signOut({ callbackUrl: "/" });
+                  setMenuOpen(false);
+                }}
                 className="btn btn-error btn-sm w-full text-center"
               >
                 Logout
@@ -130,7 +129,9 @@ export default function Navbar() {
           )}
 
           {/* Theme Toggle in mobile menu */}
-          <li><ThemeToggle className="w-full" /></li>
+          <li>
+            <ThemeToggle className="w-full" />
+          </li>
         </ul>
       )}
     </nav>
