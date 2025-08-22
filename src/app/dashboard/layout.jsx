@@ -1,18 +1,32 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useSession, signOut } from "next-auth/react";
+import { useRouter } from "next/navigation";
 import { FaHome, FaBoxOpen, FaUser } from "react-icons/fa";
 
 export default function DashboardLayout({ children }) {
   const { data: session } = useSession();
   const [open, setOpen] = useState(true);
+  const router = useRouter();
+
+  // Redirect if not logged in
+  useEffect(() => {
+    if (!session) {
+      const timer = setTimeout(() => {
+        router.push("/login");
+      }, 3000); // 3 seconds
+      return () => clearTimeout(timer);
+    }
+  }, [session, router]);
 
   if (!session) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-base-200 dark:bg-base-300">
-        <p className="text-base-content">You must login to access dashboard.</p>
+        <p className="text-base-content">
+          You must login to access dashboard. Redirecting to login...
+        </p>
       </div>
     );
   }
@@ -32,7 +46,10 @@ export default function DashboardLayout({ children }) {
           >
             🛍️ MAH TECH
           </Link>
-          <button className="md:hidden btn btn-ghost" onClick={() => setOpen(!open)}>
+          <button
+            className="md:hidden btn btn-ghost"
+            onClick={() => setOpen(!open)}
+          >
             ☰
           </button>
         </div>

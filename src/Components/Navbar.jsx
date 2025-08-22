@@ -6,39 +6,51 @@ import ThemeToggle from "./ThemeToggle";
 import { useSession, signOut } from "next-auth/react";
 
 export default function Navbar() {
-  const { data: session } = useSession(); 
+  const { data: session } = useSession();
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <nav className="bg-background-light dark:bg-background-dark shadow-md transition-colors duration-300">
+    <nav className="bg-base-100 dark:bg-base-300 shadow-md transition-colors duration-300">
       <div className="container mx-auto flex items-center justify-between px-6 py-4">
         {/* Logo */}
         <Link
           href="/"
-          className="text-2xl font-bold text-blue-600 dark:text-blue-400"
+          className="text-2xl font-bold text-primary dark:text-primary-content"
         >
           🛍️ MAH TECH
         </Link>
 
         {/* Desktop Menu */}
-        <ul className="hidden md:flex items-center gap-6 font-medium">
+        <ul className="hidden md:flex items-center gap-4 font-medium">
           <li>
-            <Link href="/" className="hover:text-blue-500 dark:hover:text-blue-400">
+            <Link
+              href="/"
+              className="hover:text-primary-focus dark:hover:text-primary-content"
+            >
               Home
             </Link>
           </li>
           <li>
-            <Link href="/products" className="hover:text-blue-500 dark:hover:text-blue-400">
+            <Link
+              href="/products"
+              className="hover:text-primary-focus dark:hover:text-primary-content"
+            >
               Products
             </Link>
           </li>
           <li>
-            <Link href="/dashboard" className="hover:text-blue-500 dark:hover:text-blue-400">
+            <Link
+              href="/dashboard"
+              className="hover:text-primary-focus dark:hover:text-primary-content"
+            >
               Dashboard
             </Link>
           </li>
           <li>
-            <Link href="/privacy" className="hover:text-blue-500 dark:hover:text-blue-400">
+            <Link
+              href="/privacy"
+              className="hover:text-primary-focus dark:hover:text-primary-content"
+            >
               Privacy
             </Link>
           </li>
@@ -46,7 +58,10 @@ export default function Navbar() {
           {/* Auth Buttons */}
           {!session ? (
             <li>
-              <Link href="/login" className="px-4 py-1 rounded-lg bg-blue-600 text-white hover:bg-blue-700">
+              <Link
+                href="/login"
+                className="btn btn-primary btn-sm"
+              >
                 Login
               </Link>
             </li>
@@ -54,7 +69,7 @@ export default function Navbar() {
             <li>
               <button
                 onClick={() => signOut({ callbackUrl: "/" })}
-                className="px-4 py-1 rounded-lg bg-red-600 text-white hover:bg-red-700"
+                className="btn btn-error btn-sm"
               >
                 Logout
               </button>
@@ -76,38 +91,46 @@ export default function Navbar() {
 
       {/* Mobile Dropdown */}
       {menuOpen && (
-        <ul className="md:hidden flex flex-col gap-4 px-6 py-4 bg-gray-100 dark:bg-gray-800 font-medium">
+        <ul className="md:hidden flex flex-col gap-3 px-6 py-4 bg-base-200 dark:bg-base-300 font-medium">
           <li>
-            <Link href="/" onClick={() => setMenuOpen(false)}>Home</Link>
+            <Link href="/" onClick={() => setMenuOpen(false)} className="hover:text-primary-focus dark:hover:text-primary-content">
+              Home
+            </Link>
           </li>
           <li>
-            <Link href="/products" onClick={() => setMenuOpen(false)}>Products</Link>
+            <Link href="/products" onClick={() => setMenuOpen(false)} className="hover:text-primary-focus dark:hover:text-primary-content">
+              Products
+            </Link>
           </li>
           <li>
-            <Link href="/dashboard/" onClick={() => setMenuOpen(false)}>Dashboard</Link>
+            <Link href="/dashboard" onClick={() => setMenuOpen(false)} className="hover:text-primary-focus dark:hover:text-primary-content">
+              Dashboard
+            </Link>
           </li>
 
           {!session ? (
-            <>
-              <li>
-                <Link href="/login" onClick={() => setMenuOpen(false)}
-                  className="px-4 py-1 rounded-lg bg-blue-600 text-white">
-                  Login
-                </Link>
-              </li>
-            </>
+            <li>
+              <Link
+                href="/login"
+                onClick={() => setMenuOpen(false)}
+                className="btn btn-primary btn-sm w-full text-center"
+              >
+                Login
+              </Link>
+            </li>
           ) : (
             <li>
               <button
                 onClick={() => { signOut({ callbackUrl: "/" }); setMenuOpen(false); }}
-                className="px-4 py-1 rounded-lg bg-red-600 text-white">
+                className="btn btn-error btn-sm w-full text-center"
+              >
                 Logout
               </button>
             </li>
           )}
 
           {/* Theme Toggle in mobile menu */}
-          <li><ThemeToggle className="bg-gray-300 dark:bg-gray-700" /></li>
+          <li><ThemeToggle className="w-full" /></li>
         </ul>
       )}
     </nav>
