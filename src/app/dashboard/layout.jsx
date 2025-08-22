@@ -40,12 +40,6 @@ export default function DashboardLayout({ children }) {
         } md:translate-x-0 shadow-lg`}
       >
         <div className="flex items-center justify-between px-6 py-4 border-b border-base-300 dark:border-base-400">
-          <Link
-            href="/"
-            className="text-2xl font-bold text-primary dark:text-primary-content"
-          >
-            🛍️ MAH TECH
-          </Link>
           <button
             className="md:hidden btn btn-ghost"
             onClick={() => setOpen(!open)}

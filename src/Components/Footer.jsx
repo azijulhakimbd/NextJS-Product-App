@@ -8,7 +8,7 @@ export default function Footer() {
         <div className="flex flex-col md:flex-row justify-between items-center">
           {/* Logo / Brand */}
           <div className="mb-4 md:mb-0 text-center md:text-left">
-            <h1 className="text-xl text-blue-700 font-bold">MAH TECH</h1>
+            <h1 className="text-xl text-primary font-bold">MAH TECH</h1>
             <p>We provide the latest smartphones, tablets, and smartwatches from top brands,<br /> helping you find the perfect device with expert guidance.</p>
             <p className="text-sm opacity-70">
               © {new Date().getFullYear()} All rights reserved.

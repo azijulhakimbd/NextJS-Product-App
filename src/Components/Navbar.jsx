@@ -15,7 +15,7 @@ export default function Navbar() {
         {/* Logo */}
         <Link
           href="/"
-          className="text-2xl font-bold text-primary dark:text-primary-content"
+          className="text-2xl font-bold text-primary"
         >
           🛍️ MAH TECH
         </Link>
