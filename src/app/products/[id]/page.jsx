@@ -4,7 +4,7 @@ import Image from "next/image";
 import { ObjectId } from "mongodb";
 
 export default async function ProductDetails({ params }) {
-  const { id } = params;
+  const { id } = await params;
 
   // Connect to MongoDB and fetch the product
   const client = await clientPromise;
