@@ -62,14 +62,6 @@ export default function DashboardLayout({ children }) {
               <FaUser /> Profile
             </Link>
           </li>
-          <li>
-            <button
-              onClick={() => signOut({ callbackUrl: "/" })}
-              className="w-full text-left btn btn-error flex items-center gap-3 px-6 py-3 hover:bg-error-focus rounded-lg"
-            >
-              Logout
-            </button>
-          </li>
         </ul>
       </div>
 
