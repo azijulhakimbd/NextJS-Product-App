@@ -13,16 +13,16 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 px-4">
-      <div className="w-full max-w-md bg-white shadow-lg rounded-2xl p-8">
-        <h2 className="text-2xl md:text-3xl text-center font-bold mb-8 text-gray-800">
+    <div className="min-h-screen flex items-center justify-center bg-base-200 px-4">
+      <div className="w-full max-w-md bg-base-100 shadow-lg rounded-2xl p-8">
+        <h2 className="text-2xl md:text-3xl text-center font-bold mb-8 text-base-content">
           Login
         </h2>
 
         {/* Google Login */}
         <button
           onClick={handleGoogleLogin}
-          className="w-full flex items-center justify-center gap-3 bg-red-500 hover:bg-red-600 transition-colors text-white px-4 py-3 rounded-lg font-medium mb-6"
+          className="w-full rounded-2xl flex items-center justify-center gap-3 btn btn-error text-white mb-6"
         >
           <FcGoogle size={24} className="bg-white rounded-full p-0.5" />
           <span>Continue with Google</span>

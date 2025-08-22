@@ -18,25 +18,25 @@ export default function HeroSection() {
     dots: true,
     infinite: true,
     autoplay: true,
-    autoplaySpeed: 3000, // 3 sec
+    autoplaySpeed: 3000,
     speed: 600,
     slidesToShow: 1,
     slidesToScroll: 1,
     arrows: false,
-    pauseOnHover: false, // keeps auto sliding even when hovered
+    pauseOnHover: false,
   };
 
   return (
-    <section className="bg-gray-50 dark:bg-gray-900">
+    <section className="bg-base-100">
       <div className="max-w-7xl mx-auto px-6 py-16 flex flex-col-reverse lg:flex-row items-center gap-10">
         
         {/* Left Content */}
         <div className="flex-1 text-center lg:text-left">
-          <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900 dark:text-white leading-tight">
-            Discover Amazing{" "} <br />
-            <span className="text-blue-600 dark:text-blue-400">Products</span>
+          <h1 className="text-4xl md:text-5xl font-extrabold text-base-content leading-tight">
+            Discover Amazing <br />
+            <span className="text-primary">Products</span>
           </h1>
-          <p className="mt-4 text-lg text-gray-600 dark:text-gray-300">
+          <p className="mt-4 text-lg text-base-content/70">
             Shop the latest products with ease. Enjoy fast checkout, secure
             payment, and exclusive deals tailored just for you.
           </p>
@@ -44,13 +44,13 @@ export default function HeroSection() {
           <div className="mt-6 flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
             <Link
               href="/products"
-              className="flex items-center gap-2 px-6 py-3 rounded-lg bg-blue-600 text-white hover:bg-blue-700 transition shadow-md"
+              className="btn rounded-2xl btn-primary flex items-center gap-2"
             >
               <FaShoppingCart /> Shop Now
             </Link>
             <Link
               href="/login"
-              className="px-6 py-3 rounded-lg border border-gray-400 text-gray-800 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 transition"
+              className="btn rounded-2xl"
             >
               Get Started
             </Link>

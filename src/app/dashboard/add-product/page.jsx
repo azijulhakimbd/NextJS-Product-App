@@ -1,48 +1,41 @@
 "use client";
 
 import { useSession } from "next-auth/react";
-import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import Swal from "sweetalert2";
 
 export default function AddProductPage() {
   const { data: session, status } = useSession();
   const router = useRouter();
-
-  const [product, setProduct] = useState({
-    name: "",
-    description: "",
-    price: "",
-    details: "",
-    image: "",
-  });
+  const [loading, setLoading] = useState(false);
+  const [product, setProduct] = useState({ name: "", description: "", price: "", details: "", image: "" });
 
   useEffect(() => {
     if (status === "unauthenticated") router.push("/login");
   }, [status, router]);
 
-  const handleChange = (e) => {
-    setProduct({ ...product, [e.target.name]: e.target.value });
-  };
+  const handleChange = (e) => setProduct({ ...product, [e.target.name]: e.target.value });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
+
+    Swal.fire({
+      title: "Adding Product...",
+      allowOutsideClick: false,
+      didOpen: () => Swal.showLoading(),
+    });
+
     try {
-     
-      Swal.fire({
-        title: "Adding product...",
-        allowOutsideClick: false,
-        didOpen: () => Swal.showLoading(),
-      });
+      const res = await axios.post("/api/products", product);
 
-      await axios.post("/api/products", product); 
-
-      Swal.close(); 
+      Swal.close();
 
       Swal.fire({
         icon: "success",
-        title: "Product added!",
+        title: "Product Added!",
         text: "The product was successfully added.",
         timer: 2000,
         showConfirmButton: false,
@@ -50,12 +43,14 @@ export default function AddProductPage() {
 
       setProduct({ name: "", description: "", price: "", details: "", image: "" });
     } catch (err) {
-      console.error(err);
+      Swal.close();
       Swal.fire({
         icon: "error",
         title: "Failed",
-        text: "Could not add the product. Please try again.",
+        text: err?.response?.data?.message || "Could not add the product. Please try again.",
       });
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -63,86 +58,76 @@ export default function AddProductPage() {
   if (!session) return null;
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900 p-4">
-      <div className="w-full max-w-lg bg-white dark:bg-gray-800 rounded-3xl shadow-xl p-8 md:p-10">
-        <h2 className="text-3xl font-bold mb-6 text-gray-900 dark:text-gray-100 text-center">
-          Add New Product
-        </h2>
+    <div className="min-h-screen flex items-center justify-center bg-base-200 dark:bg-base-300 p-4">
+      <div className="w-full max-w-lg bg-base-100 dark:bg-base-800 rounded-3xl shadow-xl p-8 md:p-10 transition-colors">
+        <h2 className="text-3xl font-bold mb-6 text-center text-base-content dark:text-base-content">Add New Product</h2>
 
         <form onSubmit={handleSubmit} className="space-y-5">
-          {/* Name */}
           <div>
-            <label className="block mb-2 font-medium text-gray-700 dark:text-gray-300">Product Name</label>
+            <label className="block mb-2 font-medium text-base-content dark:text-base-content">Product Name</label>
             <input
               type="text"
               name="name"
               value={product.name}
               onChange={handleChange}
-              placeholder="Enter product name"
               required
-              className="w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-gray-100 transition"
+              placeholder="Enter product name"
+              className="input input-bordered w-full"
             />
           </div>
 
-          {/* Description */}
           <div>
-            <label className="block mb-2 font-medium text-gray-700 dark:text-gray-300">Short Description</label>
+            <label className="block mb-2 font-medium text-base-content dark:text-base-content">Short Description</label>
             <input
               type="text"
               name="description"
               value={product.description}
               onChange={handleChange}
-              placeholder="Enter short description"
               required
-              className="w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-gray-100 transition"
+              placeholder="Enter short description"
+              className="input input-bordered w-full"
             />
           </div>
 
-          {/* Price */}
           <div>
-            <label className="block mb-2 font-medium text-gray-700 dark:text-gray-300">Price</label>
+            <label className="block mb-2 font-medium text-base-content dark:text-base-content">Price</label>
             <input
               type="number"
               name="price"
               value={product.price}
               onChange={handleChange}
-              placeholder="Enter price"
               required
-              className="w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-gray-100 transition"
+              placeholder="Enter price"
+              className="input input-bordered w-full"
             />
           </div>
 
-          {/* Details */}
           <div>
-            <label className="block mb-2 font-medium text-gray-700 dark:text-gray-300">Details</label>
+            <label className="block mb-2 font-medium text-base-content dark:text-base-content">Details</label>
             <textarea
               name="details"
               value={product.details}
               onChange={handleChange}
-              placeholder="Enter full product details"
               required
-              className="w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-gray-100 transition resize-none h-32"
+              placeholder="Enter full product details"
+              className="textarea textarea-bordered w-full h-32 resize-none"
             />
           </div>
 
-          {/* Image */}
           <div>
-            <label className="block mb-2 font-medium text-gray-700 dark:text-gray-300">Image URL</label>
+            <label className="block mb-2 font-medium text-base-content dark:text-base-content">Image URL</label>
             <input
               type="text"
               name="image"
               value={product.image}
               onChange={handleChange}
               placeholder="Paste image URL"
-              className="w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-gray-100 transition"
+              className="input input-bordered w-full"
             />
           </div>
 
-          <button
-            type="submit"
-            className="w-full py-3 mt-2 bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white font-semibold rounded-xl shadow-md transition-all duration-200"
-          >
-            Add Product
+          <button type="submit" className={`btn w-full ${loading ? "loading" : ""}`} disabled={loading}>
+            {loading ? "Adding..." : "Add Product"}
           </button>
         </form>
       </div>

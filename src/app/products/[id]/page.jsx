@@ -4,11 +4,11 @@ import Image from "next/image";
 import { ObjectId } from "mongodb";
 
 export default async function ProductDetails({ params }) {
-  const { id } = await params;
+  const { id } = params;
 
   // Connect to MongoDB and fetch the product
   const client = await clientPromise;
-  const db = client.db("ProductApp"); 
+  const db = client.db("ProductApp");
   const product = await db
     .collection("products")
     .findOne({ _id: new ObjectId(id) });
@@ -18,7 +18,7 @@ export default async function ProductDetails({ params }) {
     return (
       <div className="max-w-3xl mx-auto px-4 py-12 text-center">
         <h1 className="text-2xl font-bold mb-4">Product Not Found</h1>
-        <Link href="/products" className="text-blue-500 hover:underline">
+        <Link href="/products" className="link link-primary">
           Back to Products
         </Link>
       </div>
@@ -27,37 +27,31 @@ export default async function ProductDetails({ params }) {
 
   return (
     <div className="max-w-5xl mx-auto px-4 py-12">
-      <div className="grid md:grid-cols-2 gap-10 items-center shadow-lg rounded-2xl p-6">
+      <div className="flex flex-col lg:flex-row bg-base-100 shadow-xl rounded-xl overflow-hidden">
         {/* Product Image */}
-        <div className="flex justify-center">
+        <div className="flex-shrink-0 lg:w-1/2 w-full relative h-74 lg:h-auto">
           <Image
             src={product.image}
             alt={product.name}
-            width={400}
-            height={400}
-            className="rounded-xl shadow-md object-cover"
+            fill
+            className="object-cover w-full h-64"
             priority
           />
         </div>
 
         {/* Product Details */}
-        <div>
-          <h1 className="text-3xl text-white font-bold mb-4">{product.name}</h1>
-          <p className="text-gray-600 mb-6 leading-relaxed">{product.details}</p>
-          <p className="text-2xl font-semibold text-blue-600 mb-6">
-            ${product.price}
-          </p>
+        <div className="lg:w-1/2 w-full p-6 flex flex-col justify-between">
+          <div>
+            <h1 className="text-3xl font-bold mb-4">{product.name}</h1>
+            <p className="text-base-content/80 mb-4">{product.details}</p>
+            <p className="text-2xl font-bold text-primary mb-6">${product.price}</p>
+          </div>
 
-          <div className="flex gap-4">
-            <Link
-              href="/products"
-              className="bg-gray-200 hover:bg-gray-300 text-gray-800 px-5 py-2 rounded-lg font-medium transition"
-            >
+          <div className="flex flex-col sm:flex-row gap-4 mt-auto">
+            <Link href="/products" className="btn btn-ghost w-full sm:w-auto text-center">
               Back to Products
             </Link>
-            <button className="bg-blue-500 hover:bg-blue-600 text-white px-5 py-2 rounded-lg font-medium transition">
-              Add to Cart
-            </button>
+            <button className="btn btn-primary w-full sm:w-auto">Add to Cart</button>
           </div>
         </div>
       </div>

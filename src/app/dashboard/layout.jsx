@@ -11,45 +11,61 @@ export default function DashboardLayout({ children }) {
 
   if (!session) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
-        <p className="text-gray-700 dark:text-gray-200">You must login to access dashboard.</p>
+      <div className="min-h-screen flex items-center justify-center bg-base-200 dark:bg-base-300">
+        <p className="text-base-content">You must login to access dashboard.</p>
       </div>
     );
   }
 
   return (
-    <div className="flex min-h-screen bg-gray-100 dark:bg-gray-900">
+    <div className="flex min-h-screen bg-base-200 dark:bg-base-300">
       {/* Sidebar */}
-      <div className={`bg-white dark:bg-gray-800 w-64 transition-all ${open ? "translate-x-0" : "-translate-x-64"} md:translate-x-0 shadow-lg`}>
-        <div className="flex items-center justify-between px-6 py-4 border-b dark:border-gray-700">
-         <Link
-          href="/"
-          className="text-2xl font-bold text-blue-600 dark:text-blue-400"
-        >
-          🛍️ MAH TECH
-        </Link>
-          <button className="md:hidden" onClick={() => setOpen(!open)}>☰</button>
+      <div
+        className={`bg-base-100 dark:bg-base-300 w-64 transition-all ${
+          open ? "translate-x-0" : "-translate-x-64"
+        } md:translate-x-0 shadow-lg`}
+      >
+        <div className="flex items-center justify-between px-6 py-4 border-b border-base-300 dark:border-base-400">
+          <Link
+            href="/"
+            className="text-2xl font-bold text-primary dark:text-primary-content"
+          >
+            🛍️ MAH TECH
+          </Link>
+          <button className="md:hidden btn btn-ghost" onClick={() => setOpen(!open)}>
+            ☰
+          </button>
         </div>
+
         <ul className="mt-6">
           <li>
-            <Link href="/dashboard" className="flex items-center gap-3 px-6 py-3 hover:bg-gray-200 dark:hover:bg-gray-700">
+            <Link
+              href="/dashboard"
+              className="flex items-center gap-3 px-6 py-3 hover:bg-base-200 dark:hover:bg-base-400 rounded-lg"
+            >
               <FaHome /> Home
             </Link>
           </li>
           <li>
-            <Link href="/dashboard/add-product" className="flex items-center gap-3 px-6 py-3 hover:bg-gray-200 dark:hover:bg-gray-700">
+            <Link
+              href="/dashboard/add-product"
+              className="flex items-center gap-3 px-6 py-3 hover:bg-base-200 dark:hover:bg-base-400 rounded-lg"
+            >
               <FaBoxOpen /> Add Product
             </Link>
           </li>
           <li>
-            <Link href="/dashboard/profile" className="flex items-center gap-3 px-6 py-3 hover:bg-gray-200 dark:hover:bg-gray-700">
+            <Link
+              href="/dashboard/profile"
+              className="flex items-center gap-3 px-6 py-3 hover:bg-base-200 dark:hover:bg-base-400 rounded-lg"
+            >
               <FaUser /> Profile
             </Link>
           </li>
           <li>
             <button
               onClick={() => signOut({ callbackUrl: "/" })}
-              className="w-full text-left text-red-600 btn flex items-center gap-3 px-6 py-3 hover:bg-gray-200 dark:hover:bg-gray-700"
+              className="w-full text-left btn btn-error flex items-center gap-3 px-6 py-3 hover:bg-error-focus rounded-lg"
             >
               Logout
             </button>
